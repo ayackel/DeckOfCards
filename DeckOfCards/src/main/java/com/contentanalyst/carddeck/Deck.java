@@ -1,17 +1,23 @@
 package com.contentanalyst.carddeck;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EmptyStackException;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @author Alan
+ *
+ */
 public class Deck {
 
 	private static final int CARDS_IN_FULL_DECK = 52;
 	private List<Card> cards = Collections.emptyList();
 
-	private static final Random RNG = new Random();
+	private static final Random RNG = new SecureRandom();
 
 	public Deck() {
 		cards = createNewDeck();
@@ -27,16 +33,18 @@ public class Deck {
 		return freshDeck;
 	}
 
+	/**
+	 * 
+	 */
 	public void shuffle() {
-		List<Card> freshDeck = createNewDeck();
-		cards = doShuffle(freshDeck);
+		cards = doShuffle(createNewDeck());
 	}
 
 	/**
-	 * Fisher–Yates shuffle. Randomizes the deck;
+	 * Randomizes the deck.  Uses "inside-out" Fisher–Yates shuffle. 
 	 */
 	private List<Card> doShuffle(List<Card> freshDeck) {
-		List<Card> shuffledDeck = new ArrayList<Card>();
+		List<Card> shuffledDeck = new ArrayList<Card>(CARDS_IN_FULL_DECK);
 		shuffledDeck.addAll(freshDeck);
 		for (int i = 1; i < CARDS_IN_FULL_DECK; i++) {
 			int j = RNG.nextInt(i);
@@ -47,8 +55,17 @@ public class Deck {
 		return shuffledDeck;
 	}
 
+	/**
+	 * @return
+	 */
 	public Card dealsOneCard() {
-		return cards.remove(cards.size() - 1);
+		if(hasCards())
+			return cards.remove(cards.size() - 1);
+		throw new EmptyStackException();
+	}
+
+	public boolean hasCards() {
+		return !cards.isEmpty();
 	}
 
 	int cardsInDeck() {

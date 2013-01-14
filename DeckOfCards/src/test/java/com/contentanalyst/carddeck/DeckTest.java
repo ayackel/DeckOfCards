@@ -3,6 +3,7 @@ package com.contentanalyst.carddeck;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import java.util.EmptyStackException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -62,14 +63,13 @@ public class DeckTest {
 		assertThat(card, not(equalTo(card2)));
 	}
 
-	@Test
+	@Test(expected = EmptyStackException.class)
 	public void testDealsOneCard_53times() {
 		for (int i = 0; i < CARDS_IN_DECK; i++) {
 			deck.dealsOneCard();
 		}
 
-		Card card = deck.dealsOneCard();
-		fail();
+		deck.dealsOneCard();
 	}
 
 }
