@@ -7,6 +7,7 @@ import java.util.EmptyStackException;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.commons.math3.stat.inference.ChiSquareTest;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,9 +28,35 @@ public class DeckTest {
 	public void testShuffle() {
 		deck.shuffle();
 
-		deck.printDeck();
-
 		lookForDuplicateCards();
+	}
+
+	@Test
+	public void testShuffleRandomness() {
+		long[][] counts = new long[3][52];
+
+		//init counts
+		for(int i=0; i<3; i++) {
+			for(int j=0; j<52; j++) {
+				counts[i][j] = 0;
+			}
+		}
+		
+		//check random distribution of first three cards
+		for(int run=0; run<10000; run++) {
+			deck.shuffle();
+			for(int i=0; i<3; i++) {
+				Card card = deck.dealsOneCard();
+				int index = card.getSuit().ordinal() * Rank.values().length;
+				index += card.getRank().ordinal();
+				counts[i][index]++;
+			}
+		}
+		
+		//If the chi-square value is less than 196 then it passes 99% randomness threshold
+		ChiSquareTest chiSquareTest = new ChiSquareTest();
+ 		double chiSquare = chiSquareTest.chiSquare(counts);
+ 		assertTrue(chiSquare < 196.62);
 	}
 
 	@Test
