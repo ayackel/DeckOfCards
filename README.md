@@ -1,6 +1,5 @@
 DeckOfCards
 ===========
-
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/733a0b3e6c796789981fd14298565737 "githalytics.com")](http://githalytics.com/ayackel/DeckOfCards)
 
 Deck of Cards Problem Design Considerations
