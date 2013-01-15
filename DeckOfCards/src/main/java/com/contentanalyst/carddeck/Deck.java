@@ -34,10 +34,14 @@ public class Deck {
 	}
 
 	/**
-	 * 
+	 * Resets the deck and shuffles it
 	 */
 	public void shuffle() {
+		//Shuffles twice because the shuffle algorithm left "holes" where certain cards 
+		//could never be in certain locations in the deck.  This has to do with starting 
+		//from an order deck.  Second shuffle doesn't have this problem.
 		cards = doShuffle(createNewDeck());
+		cards = doShuffle(cards);
 	}
 
 	/**
@@ -56,7 +60,9 @@ public class Deck {
 	}
 
 	/**
-	 * @return
+	 * Deals the top card from the deck. 
+	 * If the deck is empty a EmptyStackException is thrown.
+	 * @return top Card
 	 */
 	public Card dealsOneCard() {
 		if(hasCards())
