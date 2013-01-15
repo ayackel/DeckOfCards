@@ -10,3 +10,6 @@ For the shuffle, I found an efficient shuffling algorithm and implemented a chi-
 Note:  The methods in the Deck class that are package access are that way for unit testing.
 
 The code is in an Eclipse project and a gradle build file has been added. 
+
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/733a0b3e6c796789981fd14298565737 "githalytics.com")](http://githalytics.com/ayackel/DeckOfCards)
