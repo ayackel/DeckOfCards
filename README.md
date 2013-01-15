@@ -1,4 +1,4 @@
-DeckOfCards
+DeckOfCards![githalytics.com alpha](https://cruel-carlota.pagodabox.com/733a0b3e6c796789981fd14298565737 "githalytics.com")
 ===========
 
 Deck of Cards Problem Design Considerations
@@ -11,4 +11,4 @@ Note:  The methods in the Deck class that are package access are that way for un
 
 The code is in an Eclipse project and a gradle build file has been added. 
 
-![githalytics.com alpha](https://cruel-carlota.pagodabox.com/733a0b3e6c796789981fd14298565737 "githalytics.com")
+
