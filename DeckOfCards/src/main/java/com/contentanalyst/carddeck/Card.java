@@ -1,10 +1,18 @@
 package com.contentanalyst.carddeck;
 
+/**
+ * @author Alan
+ *
+ */
 public class Card {
 
 	private final Rank rank;
 	private final Suit suit;
 
+	
+	/**
+	 * Cards should only be created by the Deck
+	 */
 	Card(Rank rank, Suit suit) {
 		this.rank = rank;
 		this.suit = suit;
