@@ -33,19 +33,19 @@ public class DeckTest {
 
 	@Test
 	public void testShuffleRandomness() {
-		long[][] counts = new long[3][52];
+		long[][] counts = new long[4][CARDS_IN_DECK];
 
 		//init counts
-		for(int i=0; i<3; i++) {
-			for(int j=0; j<52; j++) {
+		for(int i=0; i<4; i++) {
+			for(int j=0; j<CARDS_IN_DECK; j++) {
 				counts[i][j] = 0;
 			}
 		}
 		
-		//check random distribution of first three cards
+		//check random distribution of first four cards
 		for(int run=0; run<10000; run++) {
 			deck.shuffle();
-			for(int i=0; i<3; i++) {
+			for(int i=0; i<4; i++) {
 				Card card = deck.dealsOneCard();
 				int index = card.getSuit().ordinal() * Rank.values().length;
 				index += card.getRank().ordinal();
@@ -53,7 +53,8 @@ public class DeckTest {
 			}
 		}
 		
-		//If the chi-square value is less than 196 then it passes 99% randomness threshold
+		//If the chi-square value is less than 196 then it passes 99% randomness threshold.  
+		//The value 196 comes from a chi-squared table for 153 degrees of freedom ( (52-1)*(4-1) = 153).
 		ChiSquareTest chiSquareTest = new ChiSquareTest();
  		double chiSquare = chiSquareTest.chiSquare(counts);
  		assertTrue(chiSquare < 196.62);
